@@ -64,10 +64,6 @@ class DelayedEventAPI
 	{
 		$path = $this->build_path($endpoint);
 
-		$http_headers = array(
-			'authorization: Basic '. base64_encode($this->username.':'.$this->password)
-		);
-
 		$ch = curl_init($path);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request);
 
