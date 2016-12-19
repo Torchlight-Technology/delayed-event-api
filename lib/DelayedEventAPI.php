@@ -4,6 +4,11 @@ namespace torchlighttechnology;
 
 class DelayedEventAPI
 {
+	const HTTP_POST = 'POST';
+	const HTTP_GET = 'GET';
+	const HTTP_PUT = 'PUT';
+	const HTTP_DELETE = 'DELETE';
+
 	protected $username;
 	protected $password;
 	protected $api_host = '';
