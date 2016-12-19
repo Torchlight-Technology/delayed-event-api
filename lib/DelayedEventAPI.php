@@ -45,19 +45,20 @@ class DelayedEventAPI
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
-	public function add_event()
+	public function add_event($event_name, $params, $fire_date)
 	{
 
 	}
 
-	public function edit_event()
+	public function edit_event($event_name, $params, $fire_date)
 	{
 
 	}
 
-	public function delete_event()
+	public function delete_event($event_id)
 	{
-
+		$endpoint = 'delayed-events/delete/'.$event_id;
+		return $this->api_request($endpoint, self::HTTP_DELETE);
 	}
 
 	protected function $api_request($endpoint, $request = 'POST', $payload = null)
