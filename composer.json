@@ -1,0 +1,7 @@
+{
+    "name": "torchlighttechnology/delayed-event-api",
+    "description": "TTG task server delayed event API",
+    "autoload": {
+        "classmap": ["lib"]
+    }
+}
