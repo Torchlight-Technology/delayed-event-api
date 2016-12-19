@@ -35,29 +35,48 @@ class DelayedEventAPI
 
 	public function get_events()
 	{
-		$endpoint = 'delayed-events.json';
+		$endpoint = 'events.json';
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
 	public function view_event($event_id)
 	{
-		$endpoint = 'delayed-events/'.$event_id.'.json';
+		$endpoint = 'events/'.$event_id'.json';
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
-	public function add_event($event_name, $params, $fire_date)
+	public function get_delayed_events()
+	{
+		$endpoint = 'delayed-events.json';
+		return $this->api_request($endpoint, self::HTTP_GET);
+	}
+
+	public function view_delayed_event($delayed_event_id)
+	{
+		$endpoint = 'delayed-events/'.$delayed_event_id.'.json';
+		return $this->api_request($endpoint, self::HTTP_GET);
+	}
+
+	public function add_delayed_event($event_id, $params, $fire_date)
+	{
+		$endpoint = 'delayed-events/add.json';
+		$payload = array(
+			'event_id' => $event_id,
+			'parameters' => json_encode($params),
+			'fire_date' => $fire_date
+		);
+
+		return $this->api_request($endpoint, self::HTTP_POST, $payload);
+	}
+
+	public function edit_delayed_event($delayed_event_id, $event_id, $params, $fire_date)
 	{
 
 	}
 
-	public function edit_event($event_name, $params, $fire_date)
+	public function delete_delayed_event($delayed_event_id)
 	{
-
-	}
-
-	public function delete_event($event_id)
-	{
-		$endpoint = 'delayed-events/delete/'.$event_id;
+		$endpoint = 'delayed-events/delete/'.$delayed_event_id.'.json';
 		return $this->api_request($endpoint, self::HTTP_DELETE);
 	}
 
