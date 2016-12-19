@@ -13,12 +13,13 @@ class DelayedEventAPI
 
 	protected $username;
 	protected $password;
-	protected $api_host = '';
+	protected $api_host;
 
-	public function __construct($username, $password)
+	public function __construct($username, $password, $api_host)
 	{
 		$this->username = $username;
 		$this->password = $password;
+		$this->api_host = $api_host;
 	}
 
 	protected function build_path($endpoint)
