@@ -4,6 +4,11 @@ namespace torchlighttechnology;
 
 require 'Error.php';
 
+/**
+ * TTG Delayed Event PHP Client
+ * @author waffles
+ */
+
 class DelayedEventAPI
 {
 	const HTTP_POST = 'POST';
@@ -22,17 +27,36 @@ class DelayedEventAPI
 		$this->api_host = $api_host;
 	}
 
+	/**
+	 * Get All Events
+	 *
+	 * @return array API response object.
+	 */
 	public function get_events()
 	{
 		$endpoint = 'events.json';
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
+	/**
+	 * View Specific Event
+	 *
+	 * @param int $event_id event id
+	 * @return array API response object.
+	 */
+
 	public function view_event($event_id)
 	{
 		$endpoint = 'events/'.$event_id'.json';
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
+
+	/**
+	 * Create Event
+	 *
+	 * @param string $name event name
+	 * @return array API response object.
+	 */
 
 	public function create_event($name)
 	{
@@ -44,6 +68,14 @@ class DelayedEventAPI
 		return $this->api_request($endpoint, self::HTTP_POST, $payload);
 	}
 
+	/**
+	 * Update Event
+	 *
+	 * @param int $event_id event id to update
+	 * @param string $name event name
+	 * @return array API respons object.
+	 */
+
 	public function update_event($event_id, $name)
 	{
 		$endpoint = 'events/edit/'.$event_id.'.json';
@@ -54,11 +86,24 @@ class DelayedEventAPI
 		return $this->api_request($endpoint, self::HTTP_PUT, $payload);
 	}
 
+	/**
+	 * Delete Event
+	 *
+	 * @param int $event_id event id to delete
+	 * @return array API response object.
+	 */
+
 	public function delete_event($event_id)
 	{
 		$endpoint = 'events/delete/'.$event_id.'.json';
 		return $this->api_request($endpoint, self::HTTP_DELETE);
 	}
+
+	/**
+	 * Get All Delayed Events
+	 *
+	 * @return array API response object.
+	 */
 
 	public function get_delayed_events()
 	{
@@ -66,11 +111,27 @@ class DelayedEventAPI
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
+	/**
+	 * View Specific Delayed Event
+	 *
+	 * @param int $delayed_event_id delayed event id
+	 * @return array API response object.
+	 */
+
 	public function view_delayed_event($delayed_event_id)
 	{
 		$endpoint = 'delayed-events/'.$delayed_event_id.'.json';
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
+
+	/**
+	 * Create Delayed Event
+	 *
+	 * @param int $event_id event id to associate the delayed event to
+	 * @param array $params an array of fields to send along when delayed event fires
+	 * @param date/time $fire_date the date/time of when the delayed event should fire
+	 * @return array API response object.
+	 */
 
 	public function create_delayed_event($event_id, $params, $fire_date)
 	{
@@ -84,6 +145,16 @@ class DelayedEventAPI
 		return $this->api_request($endpoint, self::HTTP_POST, $payload);
 	}
 
+	/**
+	 * Update Delayed Event
+	 *
+	 * @param int $delayed_event_id delayed event id
+	 * @param int $event_id event id associated with this delayed event
+	 * @param array $params an array of fields to send along when delayed event fires
+	 * @param date/time $fire_date the date/time of when the delayed event should fire
+	 * @return array API response object.
+	 */
+
 	public function update_delayed_event($delayed_event_id, $event_id, $params, $fire_date)
 	{
 		$endpoint = 'delayed-events/edit/'.$delayed_event_id.'.json';
@@ -95,6 +166,13 @@ class DelayedEventAPI
 
 		return $this->api_request($endpoint, self::HTTP_PUT, $payload);
 	}
+
+	/**
+	 * Delete Delayed Event
+	 *
+	 * @param int $delayed_event_id delayed event id
+	 * @return array API response object.
+	 */
 
 	public function delete_delayed_event($delayed_event_id)
 	{
