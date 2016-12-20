@@ -22,18 +22,6 @@ class DelayedEventAPI
 		$this->api_host = $api_host;
 	}
 
-	protected function build_path($endpoint)
-	{
-		$path = sprintf('%s', $endpoint);
-
-		$path = sprintf('%s%s',
-			$this->api_host,
-			$path
-		);
-
-		return $path;
-	}
-
 	public function get_events()
 	{
 		$endpoint = 'events.json';
@@ -112,6 +100,18 @@ class DelayedEventAPI
 	{
 		$endpoint = 'delayed-events/delete/'.$delayed_event_id.'.json';
 		return $this->api_request($endpoint, self::HTTP_DELETE);
+	}
+
+	protected function build_path($endpoint)
+	{
+		$path = sprintf('%s', $endpoint);
+
+		$path = sprintf('%s%s',
+			$this->api_host,
+			$path
+		);
+
+		return $path;
 	}
 
 	protected function $api_request($endpoint, $request = 'POST', $payload = null)
