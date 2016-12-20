@@ -46,7 +46,7 @@ class DelayedEventAPI
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
-	public function add_event($name)
+	public function create_event($name)
 	{
 		$endpoint = 'events/add.json';
 		$payload = array(
@@ -84,7 +84,7 @@ class DelayedEventAPI
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
-	public function add_delayed_event($event_id, $params, $fire_date)
+	public function create_delayed_event($event_id, $params, $fire_date)
 	{
 		$endpoint = 'delayed-events/add.json';
 		$payload = array(
