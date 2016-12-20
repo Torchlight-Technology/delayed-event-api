@@ -46,6 +46,21 @@ class DelayedEventAPI
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
+	public function add_event()
+	{
+
+	}
+
+	public function edit_event($event_id)
+	{
+
+	}
+
+	public function delete_event($event_id)
+	{
+
+	}
+
 	public function get_delayed_events()
 	{
 		$endpoint = 'delayed-events.json';
