@@ -32,6 +32,7 @@ class DelayedEventAPI
 	 *
 	 * @return array API response object.
 	 */
+
 	public function get_events()
 	{
 		$endpoint = 'events.json';
