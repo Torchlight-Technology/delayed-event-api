@@ -48,7 +48,7 @@ class DelayedEventAPI
 
 	public function view_event($event_id)
 	{
-		$endpoint = 'events/'.$event_id'.json';
+		$endpoint = 'events/'.$event_id.'.json';
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
@@ -161,7 +161,7 @@ class DelayedEventAPI
 		$endpoint = 'delayed-events/edit/'.$delayed_event_id.'.json';
 		$payload = array(
 			'event_id' => $event_id,
-			'parameters' => $params,
+			'parameters' => json_encode($params),
 			'fire_date' => $fire_date
 		);
 
@@ -193,7 +193,7 @@ class DelayedEventAPI
 		return $path;
 	}
 
-	protected function $api_request($endpoint, $request = 'POST', $payload = null)
+	protected function api_request($endpoint, $request = 'POST', $payload = null)
 	{
 		$path = $this->build_path($endpoint);
 
