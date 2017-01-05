@@ -137,10 +137,19 @@ class DelayedEventAPI
 	public function create_delayed_event($event_id, $params, $fire_date)
 	{
 		$endpoint = 'delayed-events/add.json';
+		$splitDateTime = explode(' ', $fire_date);
+		list($year, $month, $day) = explode('-', $splitDateTime[0]);
+		list($hour, $minute) = explode(':', $splitDateTime[1]);
 		$payload = array(
 			'event_id' => $event_id,
 			'parameters' => json_encode($params),
-			'fire_date' => $fire_date
+			'fire_date' => [
+				'year' => $year,
+				'month' => $month,
+				'day' => $day,
+				'hour' => $hour,
+				'minute' => $minute
+			]
 		);
 
 		return $this->api_request($endpoint, self::HTTP_POST, $payload);
@@ -159,10 +168,19 @@ class DelayedEventAPI
 	public function update_delayed_event($delayed_event_id, $event_id, $params, $fire_date)
 	{
 		$endpoint = 'delayed-events/edit/'.$delayed_event_id.'.json';
+		$splitDateTime = explode(' ', $fire_date);
+		list($year, $month, $day) = explode('-', $splitDateTime[0]);
+		list($hour, $minute) = explode(':', $splitDateTime[1]);
 		$payload = array(
 			'event_id' => $event_id,
 			'parameters' => json_encode($params),
-			'fire_date' => $fire_date
+			'fire_date' => [
+				'year' => $year,
+				'month' => $month,
+				'day' => $day,
+				'hour' => $hour,
+				'minute' => $minute
+			]
 		);
 
 		return $this->api_request($endpoint, self::HTTP_PUT, $payload);
