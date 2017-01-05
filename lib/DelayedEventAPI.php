@@ -48,7 +48,7 @@ class DelayedEventAPI
 
 	public function view_event($event_id)
 	{
-		$endpoint = 'events/'.$event_id.'.json';
+		$endpoint = 'events/view/'.$event_id.'.json';
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
@@ -121,7 +121,7 @@ class DelayedEventAPI
 
 	public function view_delayed_event($delayed_event_id)
 	{
-		$endpoint = 'delayed-events/'.$delayed_event_id.'.json';
+		$endpoint = 'delayed-events/view/'.$delayed_event_id.'.json';
 		return $this->api_request($endpoint, self::HTTP_GET);
 	}
 
