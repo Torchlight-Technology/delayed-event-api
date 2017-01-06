@@ -47,7 +47,7 @@ class DelayedEventAPI
 	 */
 	public function find_event_by_name($name)
 	{
-		$endpoint = 'events/find-by-event-name.json';
+		$endpoint = 'events/find-event-by-name.json';
 		$payload = array(
 			'event_name' => $name
 		);
