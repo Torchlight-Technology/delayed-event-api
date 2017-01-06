@@ -40,6 +40,22 @@ class DelayedEventAPI
 	}
 
 	/**
+	 * Find Event By Like Name
+	 *
+	 * @param string $name the name of the event
+	 * @return array API response object.
+	 */
+	public function find_event_by_name($name)
+	{
+		$endpoint = 'events/find-by-event-name.json';
+		$payload = array(
+			'event_name' => $name
+		);
+
+		return $this->api_request($endpoint, self::HTTP_POST, $payload);
+	}
+
+	/**
 	 * View Specific Event
 	 *
 	 * @param int $event_id event id
