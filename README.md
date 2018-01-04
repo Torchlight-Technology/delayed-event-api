@@ -23,7 +23,7 @@ $api = new DelayedEventAPI('DELAYEDEVENTS_URL');
 $response = $api->create_event(
 	$callback_uri,	// URL string
 	$parameters,	// json string e.x. {"email":"test@test.com"}
-	$fire_date		// date string in YYYY-MM-DD HH:MM:SS format
+	$fire_date	// date string in YYYY-MM-DD HH:MM:SS format
 );
 ```
 
