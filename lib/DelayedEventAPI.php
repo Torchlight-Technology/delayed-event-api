@@ -15,31 +15,29 @@ class DelayedEventAPI
 	const HTTP_GET = 'GET';
 
 	protected $api_host;
-	protected $callback_uri;
-	protected $parameters;
-	protected $fire_date;
 
-	public function __construct($api_host, $callback_uri = null, $parameters = null, $fire_date = null)
+	public function __construct($api_host)
 	{
 		$this->api_host = $api_host;
-		$this->callback_uri = $callback_uri;
-		$this->parameters = $parameters;
-		$this->fire_date = $fire_date;
 	}
 
 
 	/**
 	 * Create Event
+	 * creates the delayed event
 	 *
+	 * @param $callback_uri url string
+	 * @param $parameters json string e.x. {"email":"test@test.com"}
+	 * @param $fire_date date string in YYYY-MM-DD HH:MM:SS format
 	 * @return array API response object.
 	 */
-	public function create_event()
+	public function create_event($callback_uri, $parameters, $fire_date)
 	{
 		$endpoint = '/delayed-events/create';
 		$payload = array(
-			'callback_uri' => $this->callback_uri,
-			'parameters' => $this->parameters,
-			'fire_date' => $this->format_date($this->fire_date)
+			'callback_uri' => $callback_uri,
+			'parameters' => $parameters,
+			'fire_date' => $this->format_date($fire_date)
 		);
 
 		return $this->api_request($endpoint, self::HTTP_POST, $payload, 'create');
@@ -65,26 +63,16 @@ class DelayedEventAPI
 
 
 	/**
-	 * Fire Events
-	 *
-	 * @return array API response object.
-	 */
-	public function fire_events()
-	{
-		$endpoint = '/delayed-events/fire-events';
-		return $this->api_request($endpoint, self::HTTP_GET);
-	}
-
-
-	/**
 	 * Remove Delayed Event
+	 * deletes all the delayed events with the given parameters
 	 *
+	 * @param $parameters json string e.x. {"email":"test@test.com"}
 	 * @return array API response object.
 	 */
-	public function remove_event()
+	public function remove_event($parameters)
 	{
 		$endpoint = '/delayed-events/remove';
-		return $this->api_request($endpoint, self::HTTP_POST, $this->parameters, 'remove');
+		return $this->api_request($endpoint, self::HTTP_POST, $parameters, 'remove');
 	}
 
 

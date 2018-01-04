@@ -1,5 +1,5 @@
 # delayed-event-api
-A PHP library to interact with TTG's task server's delayed events
+A PHP library to interact with TTG's delayed events service
 
 Install with composer
 
@@ -12,12 +12,7 @@ Usage in your project
 ```php
 use torchlighttechnology\DelayedEventAPI;
 
-$api = new DelayedEventAPI(
-	'DELAYEDEVENTS_URL',
-	'CALLBACK_URI',
-	'PARAMETERS',
-	'FIRE_DATE'
-);
+$api = new DelayedEventAPI('DELAYEDEVENTS_URL');
 ```
 
 # Events
@@ -25,17 +20,17 @@ $api = new DelayedEventAPI(
 ## Create a new event
 
 ```php
-$response = $api->create_event();
-```
-
-## Fire events
-
-```php
-$response = $api->fire_events();
+$response = $api->create_event(
+	$callback_uri,	// URL string
+	$parameters,	// json string e.x. {"email":"test@test.com"}
+	$fire_date		// date string in YYYY-MM-DD HH:MM:SS format
+);
 ```
 
 ## Remove event
 
 ```php
-$response = $api->remove_event();
+$response = $api->remove_event(
+	$parameters	// json string e.x. {"email":"test@test.com"}
+);
 ```
